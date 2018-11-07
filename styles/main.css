@@ -1,0 +1,30 @@
+
+/* GENERAL */
+.center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.vh-100 {
+    min-height: 100vh;
+}
+
+.vh-80 {
+    min-height:80vh;
+}
+
+.white {
+    color: white;
+}
+
+/* FOOTER*/
+.footer {
+    text-align: center;
+    height: 80px;
+}
+
+.footer p {
+    text-align: center;
+    color: white;
+}

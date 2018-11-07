@@ -14,14 +14,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-    <title>Quiz Game</title>
+    <title>Quiz Game | Scores</title>
 </head>
 
 <body style="height:100vh">
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
 
-    <a class="navbar-brand" href="#">Quiz Game | Scores</a>
+    <a class="navbar-brand" href="#">Quiz Game</a>
 
     <!-- Toggler / collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -33,7 +33,7 @@
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Home</a>
+                <a class="nav-link" href="../index.php">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="help.php">Help</a>
@@ -48,10 +48,11 @@
 
 
 <div class="container-fluid" style="margin-top:80px">
-    <h3>Top Fixed Navbar</h3>
-    <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
-    <h1>Scroll this page to see the effect</h1>
+
 </div>
+
+<?php require('includes/footer.php') ?>
+
 
 </body>
 </html>

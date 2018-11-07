@@ -33,7 +33,7 @@
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Home</a>
+                <a class="nav-link" href="../index.php">Home</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" data-toggle="tab" href="help.php">Help</a>
@@ -50,6 +50,9 @@
 <div class="container-fluid" style="margin-top:80px">
 
 </div>
+
+<?php require('includes/footer.php') ?>
+
 
 </body>
 </html>
