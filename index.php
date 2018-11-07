@@ -17,8 +17,8 @@
 
 <body style="height:100vh">
 
+<?php session_start() ?>
 <?php
-session_start();
 if (isset($_GET['start'])) {
     $_SESSION['questions'] += 1;
 } else {
@@ -72,42 +72,61 @@ if (isset($_GET['start'])) {
             <?php $row = 1 ?>
             <?php $rounds = $_SESSION["questions"] ?>
 
-            <?php if ($rounds > 0) { ?>
+            <!-- show only when user click on "PLAY" -->
+            <?php if ($rounds >= 1 && $rounds <= 5) { ?>
                 <form id="question_form" action="" method="post">
-                    <h3>TEST</h3>
-                    <label>
-                        <input required type="radio" name="answer"
-                               value="<?php echo $row['option 1']; ?>">
-                    </label><?php echo $row['option 1']; ?><br>
-                    <label>
-                        <input required type="radio" name="answer"
-                               value="<?php echo $row['option 2']; ?>">
-                    </label><?php echo $row['option 2']; ?><br>
-                    <label>
-                        <input required type="radio" name="answer"
-                               value="<?php echo $row['option 3']; ?>">
-                    </label><?php echo $row['option 3']; ?><br>
-                    <label>
-                        <input required type="radio" name="answer"
-                               value="<?php echo $row['option 4']; ?>">
-                    </label><?php echo $row['option 4']; ?><br>
-                    <label>
-                        <input required type="radio" name="answer"
-                               value="<?php echo $row['option 5']; ?>">
-                    </label><?php echo $row['option 5']; ?><br>
+                    <h3>
+                        <?php
+                        //TODO
+                        ?>
+                    </h3>
 
-                    <button class="btn btn-primary mt-3" name="start">
+                    <!-- First -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radios" id="radio1" value="1" checked>
+                        <label class="form-check-label" for="radio1">
+                            <?php ?>
+                        </label>
+                    </div>
+
+                    <!-- Second -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radios" id="radio2" value="2">
+                        <label class="form-check-label" for="radio2">
+                            <?php ?>
+                        </label>
+                    </div>
+
+                    <!-- Third -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radios" id="radio3" value="3">
+                        <label class="form-check-label" for="radio3">
+                            <?php ?>
+                        </label>
+                    </div>
+
+                    <!-- Fourth -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radios" id="radio4" value="4">
+                        <label class="form-check-label" for="radio4">
+                            <?php ?>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary mt-3" value="1">
                         <?php $buttonName = ($rounds <= 4) ? "Next" : "Finish" ?>
                         <?php echo $buttonName ?>
                     </button>
+
                 </form>
             <?php } ?>
 
-            <form>
-                <?php if ($rounds >= 5) { ?>
-                    <!-- TODO show result -->
-                <?php } ?>
-            </form>
+            <?php if ($rounds > 5) { ?>
+                <div class="justify-content-center">
+                    <h2>Result</h2>
+                    <h3>Score: <?php ?></h3>
+                </div>
+            <?php } ?>
 
         </div>
         <div class="card-footer text-muted">
