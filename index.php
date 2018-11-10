@@ -2,6 +2,8 @@
 
 <html lang="en">
 
+<?php session_start() ?>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,14 +19,34 @@
 
 <body style="height:100vh">
 
-<?php session_start() ?>
 <?php
+$radioValue = 0;
+
 if (isset($_GET['start'])) {
-    $_SESSION['questions'] += 1;
+    ++$_SESSION['questions'];
 } else {
     $_SESSION['questions'] = 0;
     $_SESSION['score'] = 0;
 }
+?>
+
+<?php
+
+require 'file_functions.php';
+
+if (isset($_POST['submit'])) {
+
+    if (isset($_POST['radios'])) {
+        $radioValue = $_POST['radios'];
+    }
+
+} else if (isset($_POST["score"])) {
+
+    $name = $_POST['player-name'];
+    $score = $_POST['player-score'];
+    writeScoreToFile($name, $score);
+}
+
 ?>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
@@ -62,19 +84,21 @@ if (isset($_GET['start'])) {
             <form>
                 <?php if ($_SESSION['questions'] == 0) { ?>
                     <h3 class="center">Welcome to Quiz Game! Click on the button below to start!</h3>
-                    <button name="start" class="btn btn-primary justify-content-center d-block"
+                    <button name="start" class="btn btn-primary"
                             style="padding: 5px 20px 5px 20px">Play
                     </button>
                 <?php } ?>
             </form>
 
             <!-- TODO: -->
-            <?php $row = 1 ?>
             <?php $rounds = $_SESSION["questions"] ?>
+
+            <p>Value: <?php echo $radioValue ?></p>
+            <p>Round: <?php echo $rounds ?></p>
 
             <!-- show only when user click on "PLAY" -->
             <?php if ($rounds >= 1 && $rounds <= 5) { ?>
-                <form id="question_form" action="" method="post">
+                <form id="question_form" method="post">
                     <h3>
                         <?php
                         //TODO
@@ -113,7 +137,7 @@ if (isset($_GET['start'])) {
                         </label>
                     </div>
 
-                    <button class="btn btn-primary mt-3" value="1">
+                    <button type="submit" class="btn btn-primary mt-3" name="submit">
                         <?php $buttonName = ($rounds <= 4) ? "Next" : "Finish" ?>
                         <?php echo $buttonName ?>
                     </button>
@@ -125,8 +149,48 @@ if (isset($_GET['start'])) {
                 <div class="justify-content-center">
                     <h2>Result</h2>
                     <h3>Score: <?php ?></h3>
+
+                    <div class="row">
+                        <a class="btn btn-primary mt-3" href="index.php">Restart</a>
+                        <button class="btn btn-primary mt-3 ml-3" data-toggle="modal" data-target="#scoreModal"
+                                data-score="0">Save
+                        </button>
+                    </div>
+
                 </div>
             <?php } ?>
+
+            <!-- Modal popup -->
+            <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel">Save your score</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="#">
+                                <div class="form-group">
+                                    <label for="player-name" class="col-form-label">Your name:</label>
+                                    <input type="text" class="form-control" name="player-name" id="player-name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="player-score" class="col-form-label">Your score:</label>
+                                    <input type="text" class="form-control" name="player-score" id="player-score"
+                                    >
+                                </div>
+
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" name="score">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <div class="card-footer text-muted">
@@ -135,11 +199,18 @@ if (isset($_GET['start'])) {
 
 </div>
 
-
 <?php require('pages/includes/footer.php') ?>
-
-
 </body>
+
+<script>
+    // Show modal window to save the score
+    $('#scoreModal').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget);
+        let data = button.data('score');
+        let modal = $(this)
+        modal.find('.modal-body #player-score').val(data)
+    })
+</script>
 </html>
 
 
