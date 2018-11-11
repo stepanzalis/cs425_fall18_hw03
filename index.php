@@ -1,8 +1,8 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
-
-<?php session_start() ?>
 
 <head>
     <meta charset="utf-8">
@@ -41,7 +41,6 @@ if (isset($_POST['submit'])) {
     }
 
 } else if (isset($_POST["score"])) {
-
     $name = $_POST['player-name'];
     $score = $_POST['player-score'];
     writeScoreToFile($name, $score);
@@ -93,9 +92,6 @@ if (isset($_POST['submit'])) {
             <!-- TODO: -->
             <?php $rounds = $_SESSION["questions"] ?>
 
-            <p>Value: <?php echo $radioValue ?></p>
-            <p>Round: <?php echo $rounds ?></p>
-
             <!-- show only when user click on "PLAY" -->
             <?php if ($rounds >= 1 && $rounds <= 5) { ?>
                 <form id="question_form" method="post">
@@ -141,6 +137,8 @@ if (isset($_POST['submit'])) {
                         <?php $buttonName = ($rounds <= 4) ? "Next" : "Finish" ?>
                         <?php echo $buttonName ?>
                     </button>
+
+                    <p class="mt-4">Round: <?php echo $rounds . " / " . 5?></p>
 
                 </form>
             <?php } ?>

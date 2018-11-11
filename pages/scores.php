@@ -54,13 +54,20 @@
         <div class="card-title d-flex flex-column align-items-center card-body p-5">
             <h1 class="card-text center">The Best Scores</h1>
 
+            <?php require ("../file_functions.php"); ?>
             <?php $array = getScores(); ?>
 
-            <ol type="1">
-                <?php foreach ($array as $key => $value) { ?>
-                    <li> <?php echo $key . ' - ' . $value?></li>
-                <?php } ?>
-            </ol>
+            <?php if (!empty($array)) { ?>
+                <ol type="1">
+                    <?php foreach ($array as $key => $value) { ?>
+                        <?php if (!empty($key) or !empty($value)) { ?>
+                            <li> <?php echo $key . ' - ' . $value ?></li>
+                        <?php } ?>
+                    <?php } ?>
+                </ol>
+            <?php } else { ?>
+                <h4>No scores yet.</h4>
+            <?php } ?>
 
         </div>
         <div class="card-footer text-muted"></div>
@@ -69,41 +76,6 @@
 
 
 <?php require('includes/footer.php') ?>
-
-<?php
-
-function getScores()
-{
-    $filename = "../file.txt";
-    $array = array();
-
-    if (file_exists($filename)) {
-
-        $file = fopen($filename, "r");
-
-        try {
-            while (!feof($file)) {
-                // Load one complete line and put to [] to put double dot between
-                $line = fgets($file, 1024);
-                $line = explode(" ", $line);
-
-                $name = $line[0];
-                $score = $line[1];
-
-                $array[$name] = $score;
-            }
-
-        } finally {
-            fclose($file);
-        }
-    }
-
-    array_multisort($array, SORT_DESC, array_keys($array));
-    return $array;
-}
-
-?>
-
 
 </body>
 </html>
