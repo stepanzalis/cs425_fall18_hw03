@@ -611,14 +611,302 @@
     "questions": [
       {
         "points": 3,
-        "title": "What is total of 1002+2",
+        "title": "What is total of 12 : 4 ‐ 6 * (‐ 2) + 3",
         "id": 51,
+        "correctId": "3",
+        "answers": [
+          "17",
+          "-15",
+          "18",
+          "-18"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 12 : (4 ‐ 6 ) * (‐ 2 + 3)",
+        "id": 52,
+        "correctId": "2",
+        "answers": [
+          "16",
+          "-6",
+          "19",
+          "-18"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of (12 : 4 + 6) * (‐ 2) + 3",
+        "id": 53,
+        "correctId": "3",
+        "answers": [
+          "19",
+          "-6",
+          "-15",
+          "-17"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 4 * 2 ‐ [ 4 ‐ (10 – 60 : 12) ‐ 9] : 2 ",
+        "id": 54,
+        "correctId": "2",
+        "answers": [
+          "18",
+          "13",
+          "-15",
+          "-10"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of {[(15 – 24) * 3 ‐ 13] * 2 – 16 + 6} : 3",
+        "id": 55,
+        "correctId": "2",
+        "answers": [
+          "28",
+          "-30",
+          "-30",
+          "-40"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 36 : 4 + 8 * (‐ 2) ‐ 6",
+        "id": 56,
+        "correctId": "1",
+        "answers": [
+          "-13",
+          "13",
+          "30",
+          "-40"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of  36 : (4 + 8) ‐ (2 ‐ 6)",
+        "id": 57,
         "correctId": "4",
         "answers": [
-          "1",
-          "2",
-          "3",
-          "1004"
+          "-13",
+          "-7",
+          "70",
+          "7"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of (36 : 4 + 8) * (‐ 2) ‐ 6",
+        "id": 58,
+        "correctId": "1",
+        "answers": [
+          "-40",
+          "40",
+          "30",
+          "38"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 36 : [4 + 8 * (‐ 2) ‐ 6]",
+        "id": 59,
+        "correctId": "1",
+        "answers": [
+          "-2",
+          "20",
+          "21",
+          "-20"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 4 * 12 + 7 * [(5 * 8 – 7) + 11 * 2 ‐ 48]",
+        "id": 60,
+        "correctId": "2",
+        "answers": [
+          "92",
+          "97",
+          "87",
+          "100"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of (‐ 2) * [8 * (15 ‐ 7) ‐ 2 * 7] + 2",
+        "id": 61,
+        "correctId": "2",
+        "answers": [
+          "98",
+          "-98",
+          "98",
+          "76"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 142 ‐ [3 * 2 + (5 * 8 ‐ 6) ‐ 2] – 5",
+        "id": 62,
+        "correctId": "4",
+        "answers": [
+          "86",
+          "-98",
+          "96",
+          "99"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of  { ‐ 53 + [11 ‐ (17 + 5) : 2] ‐ 39 : 3} * 2 + 8 * 4",
+        "id": 63,
+        "correctId": "3",
+        "answers": [
+          "86",
+          "-98",
+          "-100",
+          "79"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 41+ 56 : (72 - 58) - 3 * (27 - 3 * 8)",
+        "id": 64,
+        "correctId": "1",
+        "answers": [
+          "36",
+          "-38",
+          "46",
+          "50"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 8 * (26 + 14) - 17 * 17",
+        "id": 65,
+        "correctId": "4",
+        "answers": [
+          "39",
+          "31",
+          "-20",
+          "39"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 63 : (43 - 34) + 37",
+        "id": 66,
+        "correctId": "4",
+        "answers": [
+          "53",
+          "39",
+          "-34",
+          "44"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 7 * 15 + 3 * (28 - 13)",
+        "id": 67,
+        "correctId": "3",
+        "answers": [
+          "140",
+          "-129",
+          "150",
+          "149"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 162 - 53 - 6 * (22 - 18) - 7 * (43 - 39)",
+        "id": 68,
+        "correctId": "2",
+        "answers": [
+          "60",
+          "57",
+          "-57",
+          "40"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 119 - 11 * (19 * 4 - 68)",
+        "id": 69,
+        "correctId": "2",
+        "answers": [
+          "41",
+          "31",
+          "-37",
+          "40"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 209 - 135 : (83 - 2 * 37) + 7 * (8 * 13 - 7 * 12)",
+        "id": 70,
+        "correctId": "3",
+        "answers": [
+          "198",
+          "298",
+          "334",
+          "476"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of (21 * 6 - 32) : (206 - 112) + 4 * 45 + 19",
+        "id": 71,
+        "correctId": "2",
+        "answers": [
+          "198",
+          "200",
+          "334",
+          "376"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of [(4 * 9 + 7 *3) - 5 * 7] * 6 - 8",
+        "id": 72,
+        "correctId": "2",
+        "answers": [
+          "114",
+          "124",
+          "334",
+          "237"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 19 + [2 * (48 - 5 * 3 * 2 - 7) - 8]",
+        "id": 73,
+        "correctId": "1",
+        "answers": [
+          "33",
+          "34",
+          "-29",
+          "39"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 45 : 9 + 8 * 4 - 2 * (4 * 5 - 13 + 3 * 2)",
+        "id": 74,
+        "correctId": "2",
+        "answers": [
+          "19",
+          "11",
+          "29",
+          "29"
+        ]
+      },
+      {
+        "points": 3,
+        "title": "What is total of 62 - 5 * (99 : 11 - 51 : 17 - 2) + 6 * 4 - 8 * 2 ",
+        "id": 75,
+        "correctId": "4",
+        "answers": [
+          "-50",
+          "30",
+          "40",
+          "50"
         ]
       }
 

@@ -8,7 +8,7 @@ function getQuestion() {
 
     $jsonData = file_get_contents("questions.json");
     $dataHolder = json_decode($jsonData, true);
-    $number = (mt_rand(0, 2));
+    $number = (mt_rand(0, 24));
     return $dataHolder[$_SESSION['level']]['questions'][$number];
 }
 
