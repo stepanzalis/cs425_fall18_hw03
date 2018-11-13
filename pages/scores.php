@@ -18,7 +18,7 @@
     <title>Quiz Game | Scores</title>
 </head>
 
-<body style="height:100vh">
+<body class="vh-100">
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
 

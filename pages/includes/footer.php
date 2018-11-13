@@ -13,7 +13,7 @@
 
 <body>
 <div class="footer bg-dark mt-5">
-    <p class="center text-light">© Copyright<a class="text-white white ml-2" href="https://www.stepanzalis.cz">Stepan
+    <p class="center text-light">© Copyright<a class="text-white white ml-2" href="https://www.github.com/stepanzalis">Stepan
         Zalis</a></p>
 </div>
 </body>

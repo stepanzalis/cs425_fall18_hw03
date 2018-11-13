@@ -1,4 +1,4 @@
-<?php session_start() ?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 
@@ -17,33 +17,50 @@
     <title>Quiz Game</title>
 </head>
 
-<body style="height:100vh">
-
-<?php
-$radioValue = 0;
-
-if (isset($_GET['start'])) {
-    ++$_SESSION['questions'];
-} else {
-    $_SESSION['questions'] = 0;
-    $_SESSION['score'] = 0;
-}
-?>
+<body class="vh-100">
 
 <?php
 
-require 'file_functions.php';
+require_once 'file_functions.php';
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['radios'])) {
+    $radioValue = $_POST['radios'];
 
-    if (isset($_POST['radios'])) {
-        $radioValue = $_POST['radios'];
+    if ($radioValue === $_SESSION['correctId']) {
+        saveScore($_SESSION['points']);
+        $_SESSION['answers'] = $_SESSION['answers'] . "1,";
+        changeDifficulty(true);
+    } else {
+        changeDifficulty(false);
+        $_SESSION['answers'] = $_SESSION['answers'] . "0,";
     }
 
-} else if (isset($_POST["score"])) {
+}
+
+if (isset($_POST["score"])) {
     $name = $_POST['player-name'];
-    $score = $_POST['player-score'];
+    $score = $_SESSION['score'];
     writeScoreToFile($name, $score);
+}
+
+if (isset($_GET['start'])) {
+
+    ++$_SESSION['questions'];
+    $_SESSION['userSet'] = 1;
+
+    $question = getQuestion();
+
+    $_SESSION['correctId'] = $question['correctId'];
+    $_SESSION['points'] = $question['points'];
+
+} else {
+    // init
+    $_SESSION['questions'] = 0; // howmany question user have done
+    $_SESSION['score'] = 0; // actual score
+    $_SESSION['correctId'] = 0; // value of question answer (ID)
+    $_SESSION['points'] = 0; // how many points the question has
+    $_SESSION['answers'] = ""; // question IDs and user answers
+    $_SESSION['level'] = 1; // which level is user (default second level)
 }
 
 ?>
@@ -90,14 +107,14 @@ if (isset($_POST['submit'])) {
             </form>
 
             <!-- TODO: -->
-            <?php $rounds = $_SESSION["questions"] ?>
+            <?php $rounds = $_SESSION["questions"]; ?>
 
             <!-- show only when user click on "PLAY" -->
             <?php if ($rounds >= 1 && $rounds <= 5) { ?>
                 <form id="question_form" method="post">
                     <h3>
                         <?php
-                        //TODO
+                        echo $question['title']
                         ?>
                     </h3>
 
@@ -105,7 +122,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="radios" id="radio1" value="1" checked>
                         <label class="form-check-label" for="radio1">
-                            <?php ?>
+                            <?php echo $question['answers'][0] ?>
                         </label>
                     </div>
 
@@ -113,7 +130,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="radios" id="radio2" value="2">
                         <label class="form-check-label" for="radio2">
-                            <?php ?>
+                            <?php echo $question['answers'][1] ?>
                         </label>
                     </div>
 
@@ -121,7 +138,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="radios" id="radio3" value="3">
                         <label class="form-check-label" for="radio3">
-                            <?php ?>
+                            <?php echo $question['answers'][2] ?>
                         </label>
                     </div>
 
@@ -129,16 +146,15 @@ if (isset($_POST['submit'])) {
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="radios" id="radio4" value="4">
                         <label class="form-check-label" for="radio4">
-                            <?php ?>
+                            <?php echo $question['answers'][3] ?>
                         </label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-3" name="submit">
-                        <?php $buttonName = ($rounds <= 4) ? "Next" : "Finish" ?>
-                        <?php echo $buttonName ?>
+                    <button type="submit" class="btn btn-primary mt-3" value="2" name="submit">
+                        <?php echo ($rounds <= 4) ? "Next" : "Finish" ?>
                     </button>
 
-                    <p class="mt-4">Round: <?php echo $rounds . " / " . 5?></p>
+                    <p class="mt-4">Round: <?php echo $rounds . " / " . 5 ?></p>
 
                 </form>
             <?php } ?>
@@ -146,9 +162,22 @@ if (isset($_POST['submit'])) {
             <?php if ($rounds > 5) { ?>
                 <div class="justify-content-center">
                     <h2>Result</h2>
-                    <h3>Score: <?php ?></h3>
+                    <h3>Score: <?php echo $_SESSION['score'] ?></h3>
 
-                    <div class="row">
+                    <!-- USERS ANSWERS-->
+                    <ol class="mt-3">
+                        <?php
+                        $userAnswers = explode(',', $_SESSION['answers']);
+
+                        for ($i = 0; $i < 5; $i++) {
+                            $obj =  $userAnswers[$i];
+                            $final = $obj === "0" ? "INCORRECT" : "CORRECT";
+                            $color = $obj === "0" ? "red" : "green"; ?>
+                            <li style="color: <?php echo $color?>"><?php echo "Question: $final" ?></li>
+                        <?php } ?>
+                    </ol>
+
+                    <div class="row justify-content-center">
                         <a class="btn btn-primary mt-3" href="index.php">Restart</a>
                         <button class="btn btn-primary mt-3 ml-3" data-toggle="modal" data-target="#scoreModal"
                                 data-score="0">Save
@@ -176,12 +205,6 @@ if (isset($_POST['submit'])) {
                                     <input type="text" class="form-control" name="player-name" id="player-name">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="player-score" class="col-form-label">Your score:</label>
-                                    <input type="text" class="form-control" name="player-score" id="player-score"
-                                    >
-                                </div>
-
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <input type="submit" class="btn btn-primary" name="score">
                             </form>
@@ -200,13 +223,9 @@ if (isset($_POST['submit'])) {
 <?php require('pages/includes/footer.php') ?>
 </body>
 
+<!-- Show modal window to save the score -->
 <script>
-    // Show modal window to save the score
     $('#scoreModal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget);
-        let data = button.data('score');
-        let modal = $(this)
-        modal.find('.modal-body #player-score').val(data)
     })
 </script>
 </html>

@@ -3,3 +3,6 @@ asdsad 100
 kuba 2
 dsadsa 3
 test 10
+test1 6
+test 2
+stefan 5

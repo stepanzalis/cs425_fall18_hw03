@@ -1,5 +1,32 @@
 <?php
 
+function getQuestion() {
+
+    $jsonData = file_get_contents("questions.json");
+    $dataHolder = json_decode($jsonData, true);
+    $number = (mt_rand(0, 2));
+    return $dataHolder[$_SESSION['level']]['questions'][$number];
+}
+
+function saveScore($points) {
+    $_SESSION['score'] += $points;
+}
+
+/**
+ * @param $correct bool If the previous answer
+ * true -> was correct
+ * false -> was not correct
+ */
+function changeDifficulty($correct)
+{
+    $current = $_SESSION['level'];
+    if ($correct) {
+        if ($current < 2) ++$_SESSION['level'];
+    } else {
+        if (!$current <= 0) --$_SESSION['level'];
+    }
+}
+
 /**
  * Append text to file
  * @param name Player's name
@@ -7,7 +34,6 @@
  */
 function writeScoreToFile($name, $score)
 {
-
     $filename = "file.txt";
     $file = fopen($filename, "a");
 
@@ -29,7 +55,6 @@ function getScores()
 
         try {
             while (!feof($file)) {
-                // Load one complete line and put to [] to put double dot between
                 $line = fgets($file, 1024);
                 $line = explode(" ", $line);
 
@@ -41,8 +66,7 @@ function getScores()
         }
     }
 
+    // sort by value
     arsort($array, SORT_NUMERIC);
     return $array;
 }
-
-
