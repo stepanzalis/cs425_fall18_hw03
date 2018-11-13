@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Returns new question depending on previous user's answer
+ * @return String new question
+ */
 function getQuestion() {
 
     $jsonData = file_get_contents("questions.json");
@@ -8,6 +12,9 @@ function getQuestion() {
     return $dataHolder[$_SESSION['level']]['questions'][$number];
 }
 
+/**
+ * @param $points Int Save player's points
+ */
 function saveScore($points) {
     $_SESSION['score'] += $points;
 }

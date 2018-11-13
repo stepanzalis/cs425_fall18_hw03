@@ -41,6 +41,7 @@ if (isset($_POST["score"])) {
     $name = $_POST['player-name'];
     $score = $_SESSION['score'];
     writeScoreToFile($name, $score);
+    header("location:index.php");
 }
 
 if (isset($_GET['start'])) {
@@ -119,7 +120,7 @@ if (isset($_GET['start'])) {
                     </h3>
 
                     <!-- First -->
-                    <div class="form-check">
+                    <div class="form-check text-left">
                         <input class="form-check-input" type="radio" name="radios" id="radio1" value="1" checked>
                         <label class="form-check-label" for="radio1">
                             <?php echo $question['answers'][0] ?>
@@ -127,7 +128,7 @@ if (isset($_GET['start'])) {
                     </div>
 
                     <!-- Second -->
-                    <div class="form-check">
+                    <div class="form-check text-left">
                         <input class="form-check-input" type="radio" name="radios" id="radio2" value="2">
                         <label class="form-check-label" for="radio2">
                             <?php echo $question['answers'][1] ?>
@@ -135,7 +136,7 @@ if (isset($_GET['start'])) {
                     </div>
 
                     <!-- Third -->
-                    <div class="form-check">
+                    <div class="form-check text-left">
                         <input class="form-check-input" type="radio" name="radios" id="radio3" value="3">
                         <label class="form-check-label" for="radio3">
                             <?php echo $question['answers'][2] ?>
@@ -143,7 +144,7 @@ if (isset($_GET['start'])) {
                     </div>
 
                     <!-- Fourth -->
-                    <div class="form-check">
+                    <div class="form-check text-left">
                         <input class="form-check-input" type="radio" name="radios" id="radio4" value="4">
                         <label class="form-check-label" for="radio4">
                             <?php echo $question['answers'][3] ?>

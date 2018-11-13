@@ -59,14 +59,14 @@
 
             <?php if (!empty($array)) { ?>
                 <ol type="1">
-                    <?php foreach ($array as $key => $value) { ?>
-                        <?php if (!empty($key) or !empty($value)) { ?>
-                            <li> <?php echo $key . ' - ' . $value ?></li>
+                    <?php foreach ($array as $key => $value) {
+                         if (!empty($key) or !empty($value)) { ?>
+                            <li class="text-left"> <?php echo $key . ' - ' . $value ?></li>
                         <?php } ?>
                     <?php } ?>
                 </ol>
             <?php } else { ?>
-                <h4>No scores yet.</h4>
+                <h4 class="mt-3">No scores yet.</h4>
             <?php } ?>
 
         </div>
