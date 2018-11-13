@@ -52,8 +52,8 @@
 
     <div class="card text-center vh-100 shadow-sm bg-white">
         <div class="card-title d-flex flex-column align-items-center card-body p-5">
-            <h2>Hello, welcome to Quiz game!</h2>
-            <p>Please find a game instructions below</p>
+            <h2>Hello, do you want to know how to play Quiz game?</h2>
+            <p>Please find a game instructions below!</p>
             <ul class="text-left mt-5">
                 <li>To start a game, click on "Play" button at <a href="../index.php">Home Page</a></li>
                 <li>In the Quiz Game there are three main categories of difficulty. If you answer correctly, you will

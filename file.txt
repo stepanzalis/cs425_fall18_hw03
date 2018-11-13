@@ -7,3 +7,4 @@ test1 6
 test 2
 stefan 5
 test 5
+kuba 2

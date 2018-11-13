@@ -28,11 +28,11 @@ if (isset($_POST['radios'])) {
 
     if ($radioValue === $_SESSION['correctId']) {
         saveScore($_SESSION['points']);
-        $_SESSION['answers'] = $_SESSION['answers'] . "1,";
+        saveAnswer(true);
         changeDifficulty(true);
     } else {
         changeDifficulty(false);
-        $_SESSION['answers'] = $_SESSION['answers'] . "0,";
+        saveAnswer(false);
     }
 
 }
@@ -41,14 +41,12 @@ if (isset($_POST["score"])) {
     $name = $_POST['player-name'];
     $score = $_SESSION['score'];
     writeScoreToFile($name, $score);
-    header("location:index.php");
+    echo'<script> window.location="index.php"; </script> ';
 }
 
 if (isset($_GET['start'])) {
 
     ++$_SESSION['questions'];
-    $_SESSION['userSet'] = 1;
-
     $question = getQuestion();
 
     $_SESSION['correctId'] = $question['correctId'];

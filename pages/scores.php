@@ -58,7 +58,7 @@
             <?php $array = getScores(); ?>
 
             <?php if (!empty($array)) { ?>
-                <ol type="1">
+                <ol>
                     <?php foreach ($array as $key => $value) {
                          if (!empty($key) or !empty($value)) { ?>
                             <li class="text-left"> <?php echo $key . ' - ' . $value ?></li>

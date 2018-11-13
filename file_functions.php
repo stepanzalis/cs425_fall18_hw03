@@ -12,6 +12,12 @@ function getQuestion() {
     return $dataHolder[$_SESSION['level']]['questions'][$number];
 }
 
+function saveAnswer($correct) {
+    $val = $correct ? "1," : "0,";
+    $_SESSION['answers'] = $_SESSION['answers'] . $val;
+
+}
+
 /**
  * @param $points Int Save player's points
  */
