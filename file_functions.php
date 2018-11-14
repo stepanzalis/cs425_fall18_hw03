@@ -18,6 +18,10 @@ function saveAnswer($correct) {
 
 }
 
+function printScoreWithPoints($score, $points) {
+    return "Question: $score " . '(' . $points . " points" . ')';
+}
+
 /**
  * @param $points Int Save player's points
  */

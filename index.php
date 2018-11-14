@@ -41,7 +41,7 @@ if (isset($_POST["score"])) {
     $name = $_POST['player-name'];
     $score = $_SESSION['score'];
     writeScoreToFile($name, $score);
-    echo'<script> window.location="index.php"; </script> ';
+    echo'<script> window.location="index.php"; </script> '; // navigate to index.php
 }
 
 if (isset($_GET['start'])) {
@@ -51,14 +51,16 @@ if (isset($_GET['start'])) {
 
     $_SESSION['correctId'] = $question['correctId'];
     $_SESSION['points'] = $question['points'];
+    $_SESSION['answersPoint'] .= $question['points'] . "," ;
 
 } else {
     // init
-    $_SESSION['questions'] = 0; // howmany question user have done
+    $_SESSION['questions'] = 0; // how many questions user have done
     $_SESSION['score'] = 0; // actual score
     $_SESSION['correctId'] = 0; // value of question answer (ID)
     $_SESSION['points'] = 0; // how many points the question has
     $_SESSION['answers'] = ""; // question IDs and user answers
+    $_SESSION['answersPoint'] = ""; // how many points had the user's answers
     $_SESSION['level'] = 1; // which level is user (default second level)
 }
 
@@ -167,12 +169,16 @@ if (isset($_GET['start'])) {
                     <ol class="mt-3">
                         <?php
                         $userAnswers = explode(',', $_SESSION['answers']);
+                        $userPoints = explode(',', $_SESSION['answersPoint']);
 
                         for ($i = 0; $i < 5; $i++) {
                             $obj =  $userAnswers[$i];
+                            $objPoints =  $userPoints[$i];
+
                             $final = $obj === "0" ? "INCORRECT" : "CORRECT";
                             $color = $obj === "0" ? "red" : "green"; ?>
-                            <li style="color: <?php echo $color?>"><?php echo "Question: $final" ?></li>
+
+                            <li style="color: <?php echo $color?>"><?php echo printScoreWithPoints($final, $objPoints) ?></li>
                         <?php } ?>
                     </ol>
 
